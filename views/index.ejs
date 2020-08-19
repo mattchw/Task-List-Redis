@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <title>RedisTasks</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style>
+    .del:checked+span {
+      color: red;
+    }
+
+    .task-list {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="task-list-container" class="container">
+    <h3><%= title %></h3>
+
+    <form method="post" action="/task/add">
+      <div class="input-group mb-3">
+        <input type="text" name="task" class="form-control" placeholder="Add Task" aria-label="Add Task">
+        <div class="input-group-append">
+          <button class="btn btn-outline-info" type="submit" id="button-addon2">Add</button>
+        </div>
+      </div>
+    </form>
+
+    <form method="post" action="/task/delete">
+        <% tasks.forEach(function(task){ %>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" name="tasks" class="del" value="<%= task %>">
+            </div>
+          </div>
+          <input type="text" class="form-control" value="<%= task %>" disabled>
+        </div>
+        <% }) %>
+        <div id="ok-btn">
+          <button type="submit" class="btn btn-info">OK</button>
+        </div>
+    </form>
+
+
+  </div>
+</body>
+
+</html>
